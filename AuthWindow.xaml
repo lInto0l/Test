@@ -1,0 +1,22 @@
+﻿<Window x:Class="CinemaStudio.AuthWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CinemaStudio"
+        mc:Ignorable="d"
+        Title="Авторизация" Height="310" Width="350" ResizeMode="NoResize" SizeToContent="Height">
+    
+    <StackPanel Margin="20">
+        <Label Content="Авторизация" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold"/>
+
+        <StackPanel Margin="0 20 0 0">
+            <Label Content="Логин" FontWeight="SemiBold"/>
+            <TextBox Name="LoginField" Padding="3" FontWeight="SemiBold"/>
+            <Label Content="Пароль" FontWeight="SemiBold"/>
+            <PasswordBox Name="PasswordField" Padding="3" FontWeight="SemiBold"/>
+
+            <Button Name="ApplyBtn" Content="Подтвердить" IsDefault="True" Click="ApplyBtn_Click" Margin="20 40 20 20" FontWeight="Bold" Padding="5" />
+        </StackPanel>
+    </StackPanel>
+</Window>

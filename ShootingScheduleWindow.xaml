@@ -1,0 +1,50 @@
+﻿<Window x:Class="CinemaStudio.ShootingScheduleWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CinemaStudio"
+        mc:Ignorable="d"
+        Title="График съёмок" Height="540" MinHeight="540" MinWidth="800" Width="880">
+
+        <Grid Margin="20">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="0.03*"/>
+                <ColumnDefinition Width="0.5*"/>
+            </Grid.ColumnDefinitions>
+
+            <DataGrid Name="SheduleTable" Grid.Column="0" ItemsSource="{Binding Schedules}" SelectionChanged="SheduleTable_SelectionChanged"  CanUserAddRows="False" AutoGenerateColumns="False" CanUserDeleteRows="False" IsReadOnly="True">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Код" Binding="{Binding Id}"/>
+                    <DataGridTextColumn Header="Дата" Binding="{Binding Date}"/>
+                    <DataGridTextColumn Header="Сцена" Binding="{Binding ProjectStage.Name}"/>
+                    <DataGridTextColumn Header="Время" Binding="{Binding Time}"/>
+                    <DataGridTextColumn Header="Съемочная группа" Binding="{Binding FilmCrewId}"/>
+                <DataGridTextColumn Header="Площадка" Binding="{Binding ProjectFilmSet.FilmSetId}"/>
+            </DataGrid.Columns>
+            </DataGrid>
+
+            <StackPanel Grid.Column="2" Margin="20 0 10 0">
+            <Button Content="Сбросить" Click="ResetBtn_Click"  Margin="0 0 0 20" Height="30"/>
+
+                <Label Content="Дата" FontWeight="SemiBold"/>
+                <DatePicker Name="DateField" SelectedDate="{Binding SelectedDate}" DisplayDateStart="{Binding MinDate}" DisplayDateEnd="{Binding MaxDate}"/>
+                <Label Content="Время" FontWeight="SemiBold"/>
+                <ComboBox Name="TimeCombo" ItemsSource="{Binding TimeList}" SelectedItem="{Binding EditableSchedule.Time}"/>
+                <Label Content="Проект" FontWeight="SemiBold"/>
+                <ComboBox Name="ProjectCombo" SelectedValuePath="Id" SelectedValue="{Binding EditableSchedule.ProjectFilmSet.ProjectId}" DisplayMemberPath="Name"/>
+                <Label Content="Площадка" FontWeight="SemiBold"/>
+                <ComboBox Name="FilmSetCombo" SelectedValuePath="Id" SelectedValue="{Binding EditableSchedule.ProjectFilmSet.FilmSetId}" DisplayMemberPath="Id"/>
+                <Label Content="Съемочная группа" FontWeight="SemiBold"/>
+                <ComboBox Name="FilmCrewCombo" SelectedValuePath="Id" SelectedValue="{Binding EditableSchedule.FilmCrewId}" DisplayMemberPath="Id"/>
+                <Label Content="Сцена" FontWeight="SemiBold"/>
+                <ComboBox Name="StageCombo" SelectedValuePath="Id" SelectedValue="{Binding EditableSchedule.ProjectStageId}" DisplayMemberPath="Name"/>    
+                <Label Content="Описание" FontWeight="SemiBold"/>
+                <TextBox Name="DescriptionField" Text="{Binding EditableSchedule.Description}"/>
+           
+                <Button Content="Сохранить" Click="SaveBtn_Click"  Margin="0 30 0 0" Height="30"/>
+            </StackPanel>
+        </Grid>
+</Window>

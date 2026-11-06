@@ -1,0 +1,49 @@
+﻿<Window x:Class="CinemaStudio.FilmSetWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CinemaStudio"
+        mc:Ignorable="d"
+      Title="Проекты" Height="520" MinHeight="520" MinWidth="800" Width="880">
+
+    <Grid Margin="20">
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="0.03*"/>
+            <ColumnDefinition Width="0.5*"/>
+        </Grid.ColumnDefinitions>
+
+        <DataGrid Grid.Column="0" ItemsSource="{Binding FilmSets}" SelectedItem="{Binding SelectedFilmSet}" CanUserAddRows="False" AutoGenerateColumns="False" CanUserDeleteRows="False" IsReadOnly="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Код" Binding="{Binding Id}"/>
+                <DataGridTextColumn Header="Адрес" Binding="{Binding FullAddressName}"/>
+                <DataGridTextColumn Header="Тип" Binding="{Binding FilmSetType.Name}"/>
+                <DataGridTextColumn Header="Аренда в день" Binding="{Binding DayRent}"/>
+                <DataGridTextColumn Header="Вместимость" Binding="{Binding Capacity}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <StackPanel Grid.Column="2" Margin="20 0 10 0">
+            <Button Content="Сбросить" Click="ResetBtn_Click" Margin="0 0 0 20" Height="30"/>
+
+            <Label Content="Тип" FontWeight="SemiBold"/>
+            <ComboBox Name="SetTypeCombo" SelectedValuePath="Id"  SelectedValue="{Binding EditableSet.FilmSetTypeId}" DisplayMemberPath="Name"/>
+            <Label Content="Аренда в день" FontWeight="SemiBold"/>
+            <TextBox Name="RentField" Text="{Binding EditableSet.DayRent}"/>
+            <Label Content="Вместимость" FontWeight="SemiBold"/>
+            <TextBox Name="CapacityField" Text="{Binding EditableSet.Capacity}"/>
+            
+            <Label Content="Адрес" FontWeight="Bold" Margin="0 20 0 5"/>
+            <Label Content="Город" FontWeight="SemiBold"/>
+            <ComboBox Name="CityCombo" SelectedValuePath="Id" SelectionChanged="CityCombo_SelectionChanged" SelectedValue="{Binding EditableSet.Address.Street.CityId}" DisplayMemberPath="Name"/>
+            <Label Content="Улица" FontWeight="SemiBold"/>
+            <ComboBox Name="StreetCombo" SelectedValuePath="Id" SelectedValue="{Binding EditableSet.Address.StreetId}" DisplayMemberPath="Name"/>
+            <Label Content="Дом" FontWeight="SemiBold"/>
+            <TextBox Name="BuildingField" Text="{Binding EditableSet.Address.Building}"/>
+
+            <Button Content="Сохранить" Click="SaveBtn_Click" Margin="0 30 0 0" Height="30"/>
+        </StackPanel>
+    </Grid>
+</Window>

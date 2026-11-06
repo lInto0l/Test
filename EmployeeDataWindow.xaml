@@ -1,0 +1,60 @@
+﻿<Window x:Class="CinemaStudio.EmployeeDataWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CinemaStudio"
+        mc:Ignorable="d"
+        Title="Добавление сотрудника" Height="470" Width="350" ResizeMode="NoResize" SizeToContent="Height">
+    <Window.Resources>
+        <local:ImagePathConverter x:Key="ImgConverter"/>
+    </Window.Resources>
+
+    <StackPanel Margin="20">
+        <StackPanel Margin="0 0 0 15" Orientation="Horizontal">
+            <Image Source="{Binding Avatar, Converter={StaticResource ImgConverter}}" Width="80" Height="80" HorizontalAlignment="Left" Margin="0 0 10 0"/>
+            <Button Content="Выбрать файл" FontSize="10" Height="25" Click="OpenDialogBtn_Click"/>
+        </StackPanel>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="0.1*"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Column="0">
+                <Label Content="Фамилия"/>
+                <TextBox Name="SurnameField"/>
+                <Label Content="Имя"/>
+                <TextBox Name="NameField"/>
+                <Label Content="Специальность"/>
+                <ComboBox Name="SpecialityCombo" DisplayMemberPath="Name"/>
+            </StackPanel>
+
+            <StackPanel Grid.Column="2">
+                <Label Content="Логин"/>
+                <TextBox Name="LoginField"/>
+                <Label Content="Пароль"/>
+                <TextBox Name="PasswordField"/>
+                <Label Content="Ставка"/>
+                <TextBox Name="BidField"/>
+            </StackPanel>
+        </Grid>
+
+        <StackPanel>
+            <Label Content="Контактные данные" Margin="0 20 0 5" FontWeight="SemiBold"/>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                <StackPanel>
+                    <Label Content="Телефон"/>
+                    <TextBox Name="PhoneField" MinWidth="100"/>
+                </StackPanel>
+                <StackPanel Margin="30 0 0 0">
+                    <Label Content="Почта"/>
+                    <TextBox Name="EmailField" MinWidth="100"/>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+
+        <Button Content="Сохранить" Click="SaveBtn_Click" Margin="0 30 0 0 "/>
+    </StackPanel>
+</Window>

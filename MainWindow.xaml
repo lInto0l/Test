@@ -1,0 +1,42 @@
+﻿<Window x:Class="CinemaStudio.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CinemaStudio"
+        mc:Ignorable="d"
+        Title="Главная" Height="350" Width="450" ResizeMode="NoResize" SizeToContent="Height">
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <DockPanel Grid.Row="0" Margin="0 0 0 20 ">
+            <Image Name="UserAvatar"  Stretch="UniformToFill"  Width="40" Height="40" Margin="0 0 10 0"/>
+            <Label Name="UserNameField" Content="{Binding User.Name}" VerticalAlignment="Center" FontWeight="SemiBold"/>
+            <Button Name="LogoutBtn" Content="Выйти" Click="LogoutBtn_Click" HorizontalAlignment="Right"/>
+        </DockPanel>
+
+        <Grid Grid.Row="2" Margin="0 20 0 0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="0.1*"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Column="0">
+                <Button Name="EmployeeBtn" Content="Сотрудники" Margin="0 0 0 10" Click="EmployeeBtn_Click"/>
+                <Button Name="ProjectBtn" Content="Проекты" Margin="0 0 0 10" Click="ProjectBtn_Click"/>
+                <Button Name="FilmSetBtn" Content="Площадки" Margin="0 0 0 10" Click="FilmSetBtn_Click"/>
+                <Button Name="FilmCrewBtn" Content="Съемочная группа" Margin="0 0 0 10" Click="FilmCrewBtn_Click"/>
+            </StackPanel>
+
+            <StackPanel Grid.Column="2">
+                <Button Name="ShootingScheduleBtn" Content="График съемок" Margin="0 0 0 10" Click="ShootingScheduleBtn_Click"/>
+                <Button Name="ProjectCostBtn" Content="Затраты" Margin="0 0 0 10" Click="ProjectCostBtn_Click"/>
+                <Button Name="RentalBtn" Content="Прокат" Margin="0 0 0 10" Click="RentalBtn_Click"/>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>
